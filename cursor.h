@@ -1,8 +1,8 @@
-#include "polygon.h"
+#include "Rectangle.h"
 
 class Cursor{
 public:
-	Polygon p;
+	Rectangle p;
 	static int xed ;
 	static int yed ;
 	static int centerx ;
