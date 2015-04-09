@@ -4,6 +4,7 @@
 void Controller::controllerMain()
 {
 	KeyboardController::Mode currMode;
+	int radius;
 	while(1)
 	{
 		if (keyboardController.isModeHasChanged())
@@ -15,6 +16,10 @@ void Controller::controllerMain()
 			{
 				while (keyboardController.waitForInput);
 				polygons.push_back(Polygon1(keyboardController.getNbTitik()));
+			} else if (currMode == KeyboardController::Mode::Circle)
+			{
+				while (keyboardController.waitForInput);
+				radius = keyboardController.getNbTitik();
 			}
 		}
 
@@ -24,7 +29,7 @@ void Controller::controllerMain()
 			MouseEvent event = mouse.getMouseEvent();
 
 			//TODO: Tambahain firepoint disin
-			
+
 			if (keyboardController.getMode() != KeyboardController::Mode::Polygon)
 			{
 				points.push_back(Point(event.getX(), event.getY()));
@@ -47,7 +52,7 @@ void Controller::controllerMain()
 			case KeyboardController::Mode::Circle:
 				if (points.size() == 1)
 				{
-					circles.push_back(Circle(points.at(0), 100));
+					circles.push_back(Circle(points.at(0), radius));
 					points = std::vector<Point>();
 				}
 				break;

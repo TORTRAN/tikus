@@ -23,6 +23,16 @@ void KeyboardController::inputThread()
 			case 'c':
 				mode = Mode::Circle;
 				modeHasChanged = true;
+				waitForInput = true;
+
+				input = getch();
+				nbTitik = ((int) (input - '0')) * 100;
+				input = getch();
+				nbTitik += ((int) (input - '0')) * 10;
+				input = getch();
+				nbTitik += ((int) (input - '0')) * 1;
+
+				waitForInput = false;
 				break;
 
 			case 'p':
